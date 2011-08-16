@@ -29,7 +29,7 @@ class myGengo_Client
         $this->config = myGengo_Config::getInstance();
         $config = array('maxredirects' => 5,
                         'useragent' => 'phpMyGengo 1.0',
-                        'timeout' => 10,
+                        'timeout' => 60,
                         'keepalive' => false);
         $this->client = new Zend_Http_Client(null, $config);
     }
