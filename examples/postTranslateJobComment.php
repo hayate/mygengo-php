@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Delete a job already sent into myGengo.
+ * Submits a new comment to the job's comment thread.
  */
 
 require_once '../init.php';
@@ -14,8 +14,9 @@ $job_id = 1;
 // Get an instance of Job Client
 $job_client = myGengo_Api::factory('job', $api_key, $private_key);
 
-// Cancel a job which has not been started by a translator.
-$job_client->cancel($job_id);
+// Post a new comment.
+$comment = 'By the way, the context of this text is a game for kids!';
+$job_client->postComment($job_id, $comment);
 
 // Display the server response.
 echo $job_client->getResponseBody();
@@ -26,3 +27,4 @@ echo $job_client->getResponseBody();
  */
 
 ?>
+

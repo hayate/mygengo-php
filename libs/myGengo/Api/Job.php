@@ -54,12 +54,12 @@ class myGengo_Api_Job extends myGengo_Api
      * Retrieves the comment thread for a job
      *
      * @param int $id The id of the job to retrieve
-     * @param string $format The response format, xml or json
+     * @param string $format The OPTIONAL response format: xml or json (default).
      * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
-    public function getComments($id = null, $format = null, $params = null)
+    public function getComments($id, $format = null, $params = null)
     {
         $this->setParams($id, $format, $params);
         $baseurl = $this->config->get('baseurl', null, true);
@@ -73,12 +73,12 @@ class myGengo_Api_Job extends myGengo_Api
      * Retrieves the feedback
      *
      * @param int $id The id of the job to retrieve
-     * @param string $format The response format, xml or json
+     * @param string $format The OPTIONAL response format: xml or json (default).
      * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
-    public function getFeedback($id = null, $format = null, $params = null)
+    public function getFeedback($id, $format = null, $params = null)
     {
         $this->setParams($id, $format, $params);
         $baseurl = $this->config->get('baseurl', null, true);
@@ -92,12 +92,12 @@ class myGengo_Api_Job extends myGengo_Api
      * Gets list of revision resources for a job.
      *
      * @param int $id The id of the job to retrieve
-     * @param string $format The response format, xml or json
+     * @param string $format The OPTIONAL response format: xml or json
      * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
-    public function getRevisions($id = null, $format = null, $params = null)
+    public function getRevisions($id, $format = null, $params = null)
     {
         $this->setParams($id, $format, $params);
         $baseurl = $this->config->get('baseurl', null, true);
@@ -112,12 +112,12 @@ class myGengo_Api_Job extends myGengo_Api
      *
      * @param int $id The id of the job to retrieve
      * @param int $rev_id The id of the revision to retrieve
-     * @param string $format The response format, xml or json
+     * @param string $format The OPTIONAL response format: xml or json
      * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
-    public function getRevision($id = null, $rev_id = null, $format = null, $params = null)
+    public function getRevision($id, $rev_id, $format = null, $params = null)
     {
         $this->setParams($id, $format, $params);
         if (is_null($rev_id))
@@ -342,12 +342,12 @@ class myGengo_Api_Job extends myGengo_Api
      *
      * @param int $id The id of the job to comment on
      * @param string $body The comment's actual contents.
-     * @param string $format The response format, xml or json
+     * @param string $format The OPTIONAL response format: xml or json (default).
      * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
-    public function postComment($id = null, $body = null, $format = null, $params = null)
+    public function postComment($id, $body, $format = null, $params = null)
     {
         if (!(is_null($id) || is_null($body))) // If nor the id or the body are null, we override params.
         {
@@ -407,7 +407,7 @@ class myGengo_Api_Job extends myGengo_Api
      * necessary parameters for the request including the api_key and
      * api_sig
      */
-    public function previewJob($id = null, $format = null, $params = null)
+    public function previewJob($id, $format = null, $params = null)
     {
         $this->setParams($id, $format, $params);
         $baseurl = $this->config->get('baseurl', null, true);

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Delete a job already sent into myGengo.
+ * Gets list of revision resources for a job.
  */
 
 require_once '../init.php';
@@ -14,15 +14,20 @@ $job_id = 1;
 // Get an instance of Job Client
 $job_client = myGengo_Api::factory('job', $api_key, $private_key);
 
-// Cancel a job which has not been started by a translator.
-$job_client->cancel($job_id);
+// Get the revisions' list.
+$job_client->getRevisions($job_id);
 
 // Display the server response.
 echo $job_client->getResponseBody();
 
 /**
- * Typical response:
- {"opstat":"ok","response":{}}
+ * Typical response: a list of revisions id and their timestamp.
+  {"opstat":"ok","response":{"job_id":"384988","revisions":[
+    {"ctime":1313495744,"rev_id":"3333756"},
+    {"ctime":1313495841,"rev_id":"3333759"}
+    ]}}
  */
 
 ?>
+
+
