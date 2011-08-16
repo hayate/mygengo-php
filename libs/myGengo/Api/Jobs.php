@@ -20,6 +20,10 @@
 
 class myGengo_Api_Jobs extends myGengo_Api
 {
+    /**
+     * @param string $api_key the public API key.
+     * @param string $private_key the private API key.
+     */
     public function __construct($api_key = null, $private_key = null)
     {
         parent::__construct($api_key, $private_key);
@@ -32,8 +36,8 @@ class myGengo_Api_Jobs extends myGengo_Api
      *
      * @param array|array|string $jobs An array of payloads (a payload being itself an array of string)
      * of jobs to create.
-     * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param string $format The OPTIONAL response format: xml or json (default).
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -64,8 +68,8 @@ class myGengo_Api_Jobs extends myGengo_Api
      * Retrieves a list of resources for the most recent jobs filtered
      * by the given parameters.
      *
-     * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param string $format The OPTIONAL response format: xml or json (default).
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -89,8 +93,8 @@ class myGengo_Api_Jobs extends myGengo_Api
      * together.
      *
      * @param int $id The id of the job group to retrieve
-     * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param string $format The OPTIONAL response format: xml or json (default).
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */

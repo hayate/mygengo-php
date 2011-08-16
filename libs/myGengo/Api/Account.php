@@ -20,6 +20,10 @@
 
 class myGengo_Api_Account extends myGengo_Api
 {
+    /**
+     * @param string $api_key the public API key.
+     * @param string $private_key the private API key.
+     */
     public function __construct($api_key = null, $private_key = null)
     {
         parent::__construct($api_key, $private_key);
@@ -29,8 +33,8 @@ class myGengo_Api_Account extends myGengo_Api
      * account/balance (GET)
      * Retrieves account balance in credits
      *
-     * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param string $format The OPTIONAL response format: xml or json.
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -46,8 +50,8 @@ class myGengo_Api_Account extends myGengo_Api
      * account/stats (GET)
      * Retrieves account stats, such as orders made.
      *
-     * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param string $format The OPTIONAL response format: xml or json.
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */

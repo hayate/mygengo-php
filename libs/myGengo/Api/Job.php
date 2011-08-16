@@ -20,6 +20,10 @@
 
 class myGengo_Api_Job extends myGengo_Api
 {
+    /**
+     * @param string $api_key the public API key.
+     * @param string $private_key the private API key.
+     */
     public function __construct($api_key = null, $private_key = null)
     {
         parent::__construct($api_key, $private_key);
@@ -32,7 +36,7 @@ class myGengo_Api_Job extends myGengo_Api
      *
      * @param int $id The id of the job to retrieve
      * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -51,7 +55,7 @@ class myGengo_Api_Job extends myGengo_Api
      *
      * @param int $id The id of the job to retrieve
      * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -70,7 +74,7 @@ class myGengo_Api_Job extends myGengo_Api
      *
      * @param int $id The id of the job to retrieve
      * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -89,7 +93,7 @@ class myGengo_Api_Job extends myGengo_Api
      *
      * @param int $id The id of the job to retrieve
      * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -109,7 +113,7 @@ class myGengo_Api_Job extends myGengo_Api
      * @param int $id The id of the job to retrieve
      * @param int $rev_id The id of the revision to retrieve
      * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -170,7 +174,7 @@ class myGengo_Api_Job extends myGengo_Api
      *
      * @param int $id The id of the job to approve
      * @param array|string $args contains the parameters for the approval:
-     *  rating (required) - 1 (poor) to 5 (fantastic)
+     *  rating (optional) - 1 (poor) to 5 (fantastic)
      *  for_translator (optional) - comments for the translator
      *  for_mygengo (optional) - comments for myGengo staff (private)
      *  public (optional) - 1 (true) / 0 (false, default); whether myGengo can share this feedback publicly
@@ -179,7 +183,9 @@ class myGengo_Api_Job extends myGengo_Api
     {
         if (!is_null($id))
         {
-            if (isset($args['rating']) && !(is_numeric($args['rating']) && $args['rating'] >= 1 && $args['rating'] <= 5)) {
+            if (isset($args['rating']) &&
+                !(is_numeric($args['rating']) && $args['rating'] >= 1 && $args['rating'] <= 5))
+            {
                 throw new myGengo_Exception(
                         sprintf('In method %s: "params" must contain a valid rating', __METHOD__)
                         );
@@ -187,15 +193,15 @@ class myGengo_Api_Job extends myGengo_Api
 
             // pack the jobs
             $data = array('action' => 'approve', 'public' => (isset($args['public']) && !empty($public))? 1 : 0);
-            if (!is_null($args['rating']))
+            if (isset($args['rating']))
             {
                 $data['rating'] = $args['rating'];
             }
-            if (!is_null($args['for_translator']))
+            if (isset($args['for_translator']))
             {
                 $data['for_translator'] = $args['for_translator'];
             }
-            if (!is_null($args['for_mygengo']))
+            if (isset($args['for_mygengo']))
             {
                 $data['for_mygengo'] = $args['for_mygengo'];
             }
@@ -298,7 +304,7 @@ class myGengo_Api_Job extends myGengo_Api
      *
      * @param array|string a job payload.
      * @param string $format The response format, xml or json
-     * @param array|string $params Should contain all the
+     * @param array|string $params (DEPRECATED) Should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -337,7 +343,7 @@ class myGengo_Api_Job extends myGengo_Api
      * @param int $id The id of the job to comment on
      * @param string $body The comment's actual contents.
      * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -377,7 +383,7 @@ class myGengo_Api_Job extends myGengo_Api
      *
      * @param int $id The id of the job to cancel
      * @param string $format The response format, xml or json
-     * @param array|string $params If passed should contain all the
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
@@ -397,7 +403,7 @@ class myGengo_Api_Job extends myGengo_Api
      *
      * @param int $id The id of the job, if not passed it should be in config
      * @param string $format The response format, xml or json (in case of error)
-     * @param array|string $params If passed should contain all the
+     * @param array|string $params (DEPRECATED) If passed should contain all the
      * necessary parameters for the request including the api_key and
      * api_sig
      */
