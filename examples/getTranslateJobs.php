@@ -1,6 +1,6 @@
 <?php
 /**
- * Retrieves the group of jobs that were previously submitted together.
+ * Retrieves a list of jobs by their ids.
  */
 
 require_once '../init.php';

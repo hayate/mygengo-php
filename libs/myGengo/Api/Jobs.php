@@ -88,7 +88,7 @@ class myGengo_Api_Jobs extends myGengo_Api
     }
 
     /**
-     * translate/jobs/{id} (GET)
+     * translate/jobs/group/{id} (GET)
      *
      * Retrieves the group of jobs that were previously submitted
      * together.
