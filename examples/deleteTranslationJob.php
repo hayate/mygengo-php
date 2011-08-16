@@ -1,39 +1,28 @@
 <?php
 
 /**
- *	Delete a job already sent into myGengo.
+ * Delete a job already sent into myGengo.
  */
 
 require_once '../init.php';
 
-$config = myGengo_Config::getInstance();
+// TODO: this example assumes you replace the 3 value below.
+$api_key = 'your-public-api-key';
+$private_key = 'your private-api-key';
+$job_id = 1;
 
-/**
- *	Default params for job request. 
- */
-$params = array(
-	'ts' => gmdate('U'),
-	'api_key' => $config->get('api_key', null, true)
-);
-ksort($params);
-$query = http_build_query($params);
-$params['api_sig'] = myGengo_Crypto::sign($query, $config->get('private_key', null, true));
+// Get an instance of Job Client
+$job_client = myGengo_Api::factory('job', $api_key, $private_key);
 
-/**
- *	Get an instance of Job Client
- */
-$job_client = myGengo_Api::factory('job');
+// Cancel a job which has not been started by a translator.
+$job_client->cancel($job_id);
 
-/**
- *	Now we can actually delete it...
- */
-$job_client->deleteJob($job_id, 'json');
-
-/**
- *	Show the server response in depth if you need it.
- */
+// Display the server response.
 echo $job_client->getResponseBody();
 
 /**
- *	End of deleteTranslationJob.php
+ * Typical response:
+ {"opstat":"ok","response":{}}
  */
+
+?>
