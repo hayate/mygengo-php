@@ -1,39 +1,27 @@
 <?php
 
 /**
- *	Delete a job already sent into myGengo.
+ *	Retrieves account stats, such as credits spend and date of subscription.
  */
 
 require_once '../init.php';
 
-$config = myGengo_Config::getInstance();
+// TODO: this example assumes you set the 2 values below.
+$api_key = 'your-public-api-key';
+$private_key = 'your private-api-key';
 
-/**
- *	Default params for request. 
- */
-$params = array(
-	'ts' => gmdate('U'),
-	'api_key' => $config->get('api_key', null, true)
-);
-ksort($params);
-$query = http_build_query($params);
-$params['api_sig'] = myGengo_Crypto::sign($query, $config->get('private_key', null, true));
+// Get an instance of an Account Client
+$account = myGengo_Api::factory('account', $api_key, $private_key);
 
-/**
- *	Get an instance of Job Client
- */
-$account = myGengo_Api::factory('account');
+// Actually requests the stats.
+$account->getStats(); 
 
-/**
- *	Now we can actually get it...
- */
-$account->getStats('json', $param); 
-
-/**
- *	Show the server response in depth if you need it.
- */
+// Display server response.
 echo $account->getResponseBody();
 
-/**
- *	End of getAccountBalance.php
+/*
+ * Typical answer: credits spent and date of subscription (as a timestamp).
+ {"opstat":"ok","response":{"credits_spent":"1095.95","user_since":1234089500}}
  */
+
+?>

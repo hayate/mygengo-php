@@ -71,7 +71,7 @@ class myGengo_Api_Service extends myGengo_Api
      *
      * Submits a job or group of jobs to quote.
      *
-     * @param array|array|string $jobs An array of payloads (a payload being itself an array of string)
+     * @param array $jobs An array of payloads (a payload being itself an array of string)
      * of jobs to create.
      */
     public function quote($jobs)

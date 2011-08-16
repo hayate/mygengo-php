@@ -1,39 +1,37 @@
 <?php
 
 /**
- *	Pull down supported language pairs for myGengo.
+ * Returns supported translation language pairs, tiers, and credit prices.
  */
 
 require_once '../init.php';
 
-$config = myGengo_Config::getInstance();
+// TODO: this example assumes you set the 2 values below.
+$api_key = 'your-public-api-key';
+$private_key = 'your private-api-key';
 
-/**
- *	Default params for request. 
- */
-$params = array(
-	'ts' => gmdate('U'),
-	'api_key' => $config->get('api_key', null, true)
-);
-ksort($params);
-$query = http_build_query($params);
-$params['api_sig'] = myGengo_Crypto::sign($query, $config->get('private_key', null, true));
+// Get an instance of an Service Client
+$service = myGengo_Api::factory('service', $api_key, $private_key);
 
-/**
- *	Get an instance of an service Client
- */
-$service = myGengo_Api::factory('service');
+// Request the language pairs.
+$service->getLanguagePair(); 
 
-/**
- *	Now we can actually get it...
- */
-$service->getLanguagePair('json', $param); 
-
-/**
- *	Show the server response in depth if you need it.
- */
+// Display server response.
 echo $service->getResponseBody();
 
-/**
- *	End of getServiceLanguagePairs.php
+/*
+ * Typical partial response:
+ {"opstat":"ok","response":[
+    {"lc_src":"de","lc_tgt":"en","tier":"standard","unit_price":"0.0500"},
+    {"lc_src":"de","lc_tgt":"en","tier":"pro","unit_price":"0.1000"},
+    {"lc_src":"de","lc_tgt":"en","tier":"ultra","unit_price":"0.1500"},
+    {"lc_src":"en","lc_tgt":"de","tier":"standard","unit_price":"0.0500"},
+    {"lc_src":"en","lc_tgt":"de","tier":"pro","unit_price":"0.1000"},
+    {"lc_src":"en","lc_tgt":"de","tier":"ultra","unit_price":"0.1500"},
+    {"lc_src":"en","lc_tgt":"de","tier":"machine","unit_price":"0.0000"},
+    {"lc_src":"en","lc_tgt":"es","tier":"standard","unit_price":"0.0500"},
+  ...
+  ]}
  */
+
+?>

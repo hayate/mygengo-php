@@ -1,39 +1,27 @@
 <?php
 
 /**
- *	Get your myGengo account balance.
+ * Retrieve account balance in credits.
  */
 
 require_once '../init.php';
 
-$config = myGengo_Config::getInstance();
+// TODO: this example assumes you set the 2 values below.
+$api_key = 'your-public-api-key';
+$private_key = 'your private-api-key';
 
-/**
- *	Default params for request. 
- */
-$params = array(
-	'ts' => gmdate('U'),
-	'api_key' => $config->get('api_key', null, true)
-);
-ksort($params);
-$query = http_build_query($params);
-$params['api_sig'] = myGengo_Crypto::sign($query, $config->get('private_key', null, true));
+// Get an instance of an Account Client
+$account = myGengo_Api::factory('account', $api_key, $private_key);
 
-/**
- *	Get an instance of an account Client
- */
-$account = myGengo_Api::factory('account');
+// Request the balance.
+$account->getBalance(); 
 
-/**
- *	Now we can actually get it...
- */
-$account->getBalance('json', $param); 
-
-/**
- *	Show the server response in depth if you need it.
- */
+// Show the server response in depth if you need it.
 echo $account->getResponseBody();
 
-/**
- *	End of getAccountBalance.php
+/*
+ * Typical answer:
+ {"opstat":"ok","response":{"credits":"100.29"}}
  */
+
+?>
