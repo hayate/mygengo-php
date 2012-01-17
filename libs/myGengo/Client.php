@@ -28,7 +28,7 @@ class myGengo_Client
     {
         $this->config = myGengo_Config::getInstance();
         $config = array('maxredirects' => 5,
-                        'useragent' => 'phpMyGengo 1.0',
+                        'useragent' => 'myGengo PHP Library; Version 1.0; http://mygengo.com/',
                         'timeout' => 60,
                         'keepalive' => false);
         $this->client = new Zend_Http_Client(null, $config);
