@@ -179,7 +179,7 @@ class myGengo_Api_Job extends myGengo_Api
      *  for_mygengo (optional) - comments for myGengo staff (private)
      *  public (optional) - 1 (true) / 0 (false, default); whether myGengo can share this feedback publicly
      */
-    public function approve($id, $args)
+    public function approve($id, $args = array())
     {
         if (!is_null($id))
         {
