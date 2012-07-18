@@ -108,7 +108,7 @@ class myGengo_Api_Jobs extends myGengo_Api
     }
 
     /**
-     * translate/jobs (PUT)
+     * translate/jobs/ (PUT)
      *
      * Updates jobs to translate. returns these jobs back to the translators for revisions.
      *
@@ -147,17 +147,17 @@ class myGengo_Api_Jobs extends myGengo_Api
         $format = $this->config->get('format', null, true);
         $this->setParamsNotId($format, $params);
         $baseurl = $this->config->get('baseurl', null, true);
-        $baseurl .= "translate/jobs";
+        $baseurl .= "translate/jobs/";
         $this->response = $this->client->put($baseurl, $format, $params);
     }
     
     /**
-     * translate/jobs (PUT)
+     * translate/jobs/ (PUT)
      *
      * Updates jobs to translate. Approves jobs.
      *
-     * @param array $jobs (required) the payloads to identify the jobs sent back for revisions:
-     *  - "rating" (optional) the reason to the translator for sending the job back for revisions.
+     * @param array $jobs (required) the payloads to identify the jobs sent back for approval:
+     *  - "rating" (optional) - 1 (poor) to 5 (fantastic)
      *  - "for_translator" (optional) - comments for the translator
      *  - "for_mygengo" (optional) - comments for myGengo staff (private)
      *  - "public" (optional) - 1 (true) / 0 (false, default); whether myGengo can share this feedback publicly
@@ -195,16 +195,16 @@ class myGengo_Api_Jobs extends myGengo_Api
         $format = $this->config->get('format', null, true);
         $this->setParamsNotId($format, $params);
         $baseurl = $this->config->get('baseurl', null, true);
-        $baseurl .= "translate/jobs";
+        $baseurl .= "translate/jobs/";
         $this->response = $this->client->put($baseurl, $format, $params);
     }
 
     /**
-     * translate/jobs (PUT)
+     * translate/jobs/ (PUT)
      *
-     * Updates jobs to translate. returns these jobs back to the translators for revisions.
+     * Updates jobs to translate. returns these jobs back to the translators for rejection.
      *
-     * @param array $jobs (required) the payloads to identify the jobs sent back for revisions:
+     * @param array $jobs (required) the payloads to identify the jobs sent back for rejections:
      *  - reason (required) - "quality", "incomplete", "other"
      *  - comment (required)
      *  - captcha (required) - the captcha image text. Each job in a "reviewable" state will
@@ -243,12 +243,12 @@ class myGengo_Api_Jobs extends myGengo_Api
         $format = $this->config->get('format', null, true);
         $this->setParamsNotId($format, $params);
         $baseurl = $this->config->get('baseurl', null, true);
-        $baseurl .= "translate/jobs";
+        $baseurl .= "translate/jobs/";
         $this->response = $this->client->put($baseurl, $format, $params);
     }
 
     /**
-     * translate/job/{id} (DELETE)
+     * translate/jobs/ (DELETE)
      *
      * Cancels the jobs. You can only cancel a job if it has not been
      * started already by a translator.
@@ -267,7 +267,7 @@ class myGengo_Api_Jobs extends myGengo_Api
         $format = $this->config->get('format', null, true);
         $this->setParamsNotId($format, $params);
         $baseurl = $this->config->get('baseurl', null, true);
-        $baseurl .= "translate/jobs";
+        $baseurl .= "translate/jobs/";
         $this->response = $this->client->delete($baseurl, $format, $params);
     }
 }
