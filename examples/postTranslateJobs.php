@@ -46,16 +46,12 @@ $job_client->postJobs($jobs, true);
 echo $job_client->getResponseBody();
 
 /**
- * Typical response:
- {"opstat":"ok","response":{"group_id":22751,"jobs":[
-    [{"job_id":"384996","slug":"API Job test","body_src":"First test.",
-        "lc_src":"en","lc_tgt":"ja","unit_count":"2","tier":"standard","credits":"0.10",
-        "status":"available","eta":"","ctime":1313505765,"auto_approve":"0","custom_data":"1234567\u65e5\u672c\u8a9e",
-        "body_tgt":"Machine translation while waiting","mt":1}],
-     {"1":{"job_id":"384997","slug":"API Job test","body_src":"second test.",
-        "lc_src":"en","lc_tgt":"ja","unit_count":"2","tier":"standard","credits":"0.10",
-        "status":"available","eta":"","ctime":1313505765,"auto_approve":"0","custom_data":"1234567\u65e5\u672c\u8a9e",
-        "body_tgt":"Machine translation again","mt":1}}]}}
+ * Typical response while the jobs are being processed in the queue:
+ {"opstat":"ok","response":{"group_id":16822,"order_id":"102285","job_count":2,"credits_used":"0.20","currency":"USD"}}
+
+* Typical response once the jobs are done (same call on the same jobs with force not set to 1)
+
+{"opstat":"ok","response":{"jobs":[[{"job_id":"218344","slug":"API Job test","body_src":"First test.","lc_src":"en","lc_tgt":"ja","unit_count":"2","tier":"standard","credits":"0.10","currency":"USD","status":"available","eta":25308,"ctime":1343120409,"auto_approve":"0","custom_data":"1234567\u65e5\u672c\u8a9e","body_tgt":"\u6700\u521d\u306e\u30c6\u30b9\u30c8\u3002","mt":1},{"job_id":"218347","slug":"API Job test","body_src":"First test.","lc_src":"en","lc_tgt":"ja","unit_count":"2","tier":"standard","credits":"0.10","currency":"USD","status":"available","eta":25308,"ctime":1343121049,"auto_approve":"0","custom_data":"1234567\u65e5\u672c\u8a9e","body_tgt":"\u6700\u521d\u306e\u30c6\u30b9\u30c8\u3002","mt":1},{"job_id":"218348","slug":"API Job test","body_src":"First test.","lc_src":"en","lc_tgt":"ja","unit_count":"2","tier":"standard","credits":"0.10","currency":"USD","status":"available","eta":25308,"ctime":1343121082,"auto_approve":"0","custom_data":"1234567\u65e5\u672c\u8a9e","body_tgt":"\u6700\u521d\u306e\u30c6\u30b9\u30c8\u3002","mt":1}],[{"job_id":"218345","slug":"API Job test","body_src":"second test.","lc_src":"en","lc_tgt":"ja","unit_count":"2","tier":"standard","credits":"0.10","currency":"USD","status":"available","eta":25308,"ctime":1343120409,"auto_approve":"0","custom_data":"1234567\u65e5\u672c\u8a9e","body_tgt":"2 \u756a\u76ee\u306e\u30c6\u30b9\u30c8\u3002","mt":1},{"job_id":"218346","slug":"API Job test","body_src":"second test.","lc_src":"en","lc_tgt":"ja","unit_count":"2","tier":"standard","credits":"0.10","currency":"USD","status":"available","eta":25308,"ctime":1343121049,"auto_approve":"0","custom_data":"1234567\u65e5\u672c\u8a9e","body_tgt":"2 \u756a\u76ee\u306e\u30c6\u30b9\u30c8\u3002","mt":1},{"job_id":"218349","slug":"API Job test","body_src":"second test.","lc_src":"en","lc_tgt":"ja","unit_count":"2","tier":"standard","credits":"0.10","currency":"USD","status":"available","eta":25308,"ctime":1343121082,"auto_approve":"0","custom_data":"1234567\u65e5\u672c\u8a9e","body_tgt":"2 \u756a\u76ee\u306e\u30c6\u30b9\u30c8\u3002","mt":1}]]}}
  */
 
 ?>
