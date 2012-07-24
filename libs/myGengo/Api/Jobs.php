@@ -108,6 +108,34 @@ class myGengo_Api_Jobs extends myGengo_Api
     }
 
     /**
+     * translate/jobs/group/{id}/comment (POST)
+     *
+     * Submits a new comment to the job's comment thread.
+     *
+     * @param int $id The group id
+     * @param string $body The comment's actual contents.
+     * @param string $format The response format, xml or json
+     */
+    public function postGroupComment($group_id, $body, $format = null)
+    {
+        // pack the jobs
+        $data = array('body' => $body);
+
+        // create the query
+        $params = array('api_key' => $this->config->get('api_key', null, true), '_method' => 'post',
+                'ts' => gmdate('U'),
+                'data' => json_encode($data));
+        // sort and sign
+        ksort($params);
+        $enc_params = json_encode($params);
+        $params['api_sig'] = myGengo_Crypto::sign($enc_params, $this->config->get('private_key', null, true));
+
+        $baseurl = $this->config->get('baseurl', null, true);
+        $baseurl .= "translate/jobs/group/{$group_id}/comment";
+        $this->response = $this->client->post($baseurl, $format, $params);
+    }
+
+    /**
      * translate/jobs/ (PUT)
      *
      * Updates jobs to translate. returns these jobs back to the translators for revisions.
