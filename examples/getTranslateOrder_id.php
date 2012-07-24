@@ -21,7 +21,22 @@ echo $job_client->getResponseBody();
 
 /*
 *Typical response
-{"opstat":"ok","response":{"order":{"total_credits":"0.20","currency":"USD","as_group":1,"total_units":"4","jobs_available":["218344","218345"],"total_jobs":"2"}}}
+{
+    "opstat": "ok",
+    "response": {
+        "order": {
+            "total_credits": "0.20",
+            "currency": "USD",
+            "as_group": 1,
+            "total_units": "4",
+            "jobs_available": [
+                "218344",
+                "218345"
+            ],
+            "total_jobs": "2"
+        }
+    }
+}
 */
 
 ?>
