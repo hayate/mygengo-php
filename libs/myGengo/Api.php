@@ -168,8 +168,10 @@ abstract class myGengo_Api
             return new myGengo_Api_Service($api_key, $private_key);
         case 'order':
             return new myGengo_Api_Order($api_key, $private_key);
+        case 'glossary':
+            return new myGengo_Api_Glossary($api_key, $private_key);
         }
-        throw new myGengo_Exception("Invalid client: {$client}, accepted clients are: job,jobs,account and service.");
+        throw new myGengo_Exception("Invalid client: {$client}, accepted clients are: job, jobs, account, service, order, and glossary.");
     }
 
     /**
