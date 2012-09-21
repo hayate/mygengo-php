@@ -8,6 +8,8 @@ jobs. This is a PHP interface to make using the API simpler (some would say incr
 This package contains both a client library for accessing the Gengo Translate API, as well as some example code showing how to
 use the library.
 
+Full documentation **[is here.](http://developers.gengo.com)**
+
 Basic configuration
 ---------------------------------------------------------------------------------------------------------------------------
 When using this library, please be sure to check config.ini and ensure that baseurl is set to use the environment that you match your API keys.
@@ -18,6 +20,6 @@ If you have questions or comments and would like to reach us directly, please fe
 so at the following outlets. We love hearing from developers!
 
 Email: api [at] gengo dot com
-Twitter: **[@gengo_dev](http://twitter.com/gengo_dev)**
+Twitter: **[@gengo_dev](http://twitter.com/gengo_it)**
 
 If you come across any issues, please file them on the **[Github project issue tracker](https://github.com/myGengo/mygengo-php/issues)**. Thanks!

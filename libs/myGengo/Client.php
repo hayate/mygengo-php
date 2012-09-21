@@ -58,6 +58,16 @@ class myGengo_Client
         return $this->request($url, Zend_Http_Client::DELETE, $format, $params);
     }
 
+    public function upload($url, array $filepath, $format = null, array $params = null)
+    {
+        $this->client->resetParameters(true);
+        foreach ($filepath as $file_key => $fp)
+        {
+            $this->client->setFileUpload($fp, $file_key);
+        }
+        return $this->request($url, Zend_Http_Client::POST, $format, $params);
+    }
+
     protected function request($url, $method, $format = null, $params = null)
     {
         $method = strtoupper($method);
