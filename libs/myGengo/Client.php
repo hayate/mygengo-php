@@ -27,8 +27,8 @@ class myGengo_Client
     protected function __construct()
     {
         $this->config = myGengo_Config::getInstance();
-        $config = array('maxredirects' => 5,
-                        'useragent' => 'myGengo PHP Library; Version 1.0; http://mygengo.com/',
+        $config = array('maxredirects' => 1,
+                        'useragent' => 'Gengo PHP Library; Version 2.0; http://gengo.com/',
                         'timeout' => 60,
                         'keepalive' => false);
         $this->client = new Zend_Http_Client(null, $config);
@@ -86,32 +86,32 @@ class myGengo_Client
             }
             switch ($format)
             {
-            case 'xml':
-                $this->client->setHeaders('Accept', 'application/xml');
-                break;
-            case 'json':
-                $this->client->setHeaders('Accept', 'application/json');
-                break;
+                case 'xml':
+                    $this->client->setHeaders('Accept', 'application/xml');
+                    break;
+                case 'json':
+                    $this->client->setHeaders('Accept', 'application/json');
+                    break;
             }
         }
         if (! is_null($params))
         {
             switch ($method)
             {
-            case 'DELETE':
-            case 'GET':
-                $this->client->setParameterGet($params);
-                break;
-            case 'POST':
-                $this->client->setParameterPost($params);
-                break;
-            case 'PUT':
-                if (is_array($params))
-                {
-                    $params = http_build_query($params);
-                }
-                $this->client->setRawData($params, Zend_Http_Client::ENC_URLENCODED);
-                break;
+                case 'DELETE':
+                case 'GET':
+                    $this->client->setParameterGet($params);
+                    break;
+                case 'POST':
+                    $this->client->setParameterPost($params);
+                    break;
+                case 'PUT':
+                    if (is_array($params))
+                    {
+                        $params = http_build_query($params);
+                    }
+                    $this->client->setRawData($params, Zend_Http_Client::ENC_URLENCODED);
+                    break;
             }
         }
         try {
@@ -119,10 +119,8 @@ class myGengo_Client
             if ($this->config->get('debug', false))
             {
                 $response = $this->client->request($method);
-                /*echo $this->client->getUri(true);
-                echo "\n";
-                echo $this->client->getLastRequest();
-                echo "\n";*/
+                echo $this->client->getUri(true) . "\n";
+                echo $this->client->getLastRequest() . "\n";
                 return $response;
             }
             return $this->client->request($method);
