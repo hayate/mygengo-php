@@ -192,7 +192,7 @@ class myGengo_Api_Job extends myGengo_Api
             }
 
             // pack the jobs
-            $data = array('action' => 'approve', 'public' => (isset($args['public']) && !empty($public))? 1 : 0);
+            $data = array('action' => 'approve', 'public' => (isset($args['public']) && !empty($args['public'])) ? 1 : 0);
             if (isset($args['rating']))
             {
                 $data['rating'] = $args['rating'];
