@@ -149,7 +149,7 @@ class myGengo_Api_Jobs extends myGengo_Api
      *  - "body_src", the original body of text to be translated,
      *  - "lc_src", the source language code,
      *  - "lc_tgt", the target language code.
-     *  
+     *
      */
     public function revise($jobs)
     {
@@ -178,7 +178,7 @@ class myGengo_Api_Jobs extends myGengo_Api
         $baseurl .= "translate/jobs/";
         $this->response = $this->client->put($baseurl, $format, $params);
     }
-    
+
     /**
      * translate/jobs/ (PUT)
      *
@@ -196,7 +196,7 @@ class myGengo_Api_Jobs extends myGengo_Api
      *  - "body_src", the original body of text to be translated,
      *  - "lc_src", the source language code,
      *  - "lc_tgt", the target language code.
-     *  
+     *
      */
     public function approve($jobs)
     {
@@ -246,7 +246,7 @@ class myGengo_Api_Jobs extends myGengo_Api
      *  - "body_src", the original body of text to be translated,
      *  - "lc_src", the source language code,
      *  - "lc_tgt", the target language code.
-     *  
+     *
      */
     public function reject($jobs)
     {

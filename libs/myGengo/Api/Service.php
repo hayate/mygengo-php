@@ -30,6 +30,32 @@ class myGengo_Api_Service extends myGengo_Api
     }
 
     /**
+     * translate/service/unit_count/ (POST)
+     *
+     * Returns a unit count of body_src content
+     *
+     * @param string $format The OPTIONAL response format: xml or json (default).
+     * @param array|string $params (DEPRECATED) If passed should contain all the
+     * necessary parameters for the request including the api_key and
+     * api_sig
+     */
+    public function unitCount(array $jobs)
+    {
+        // create the query
+        $params = array('api_key' => $this->config->get('api_key', null, true), '_method' => 'post',
+                        'ts' => gmdate('U'),
+                        'jobs' => $jobs);
+        // sort and sign
+        ksort($params);
+        $enc_params = json_encode($params);
+        $params['api_sig'] = myGengo_Crypto::sign($enc_params, $this->config->get('private_key', null, true));
+
+        $baseurl = $this->config->get('baseurl', null, true);
+        $baseurl .= 'translate/service/unit_count';
+        $this->response = $this->client->post($baseurl, 'json', $params);
+    }
+
+    /**
      * translate/service/languages (GET)
      *
      * Returns a list of supported languages and their language codes.
